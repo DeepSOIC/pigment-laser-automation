@@ -89,7 +89,7 @@
 // If homing is enabled, homing init lock sets Grbl into an alarm state upon power up. This forces
 // the user to perform the homing cycle (or override the locks) before doing anything else. This is
 // mainly a safety feature to remind the user to home, since position is unknown to Grbl.
-#define HOMING_INIT_LOCK // Comment to disable
+//#define HOMING_INIT_LOCK // Comment to disable
 
 // Define the homing cycle patterns with bitmasks. The homing cycle first performs a search mode
 // to quickly engage the limit switches, followed by a slower locate mode, and finished by a short
@@ -106,21 +106,9 @@
 // on separate pin, but homed in one cycle. Also, it should be noted that the function of hard limits
 // will not be affected by pin sharing.
 // NOTE: Defaults are set for a traditional 3-axis CNC machine. Z-axis first to clear, followed by X & Y.
-#ifdef DEFAULTS_RAMPS_BOARD
-  #define HOMING_CYCLE_0 (1<<X_AXIS)   // Home X axis
-  #define HOMING_CYCLE_1 (1<<Y_AXIS)   // Home Y axis
-  #define HOMING_CYCLE_2 (1<<Z_AXIS)   // OPTIONAL: Home Z axis 
-#else
-  #define HOMING_CYCLE_0 (1<<Z_AXIS)                // REQUIRED: First move Z to clear workspace.
-  #define HOMING_CYCLE_1 ((1<<X_AXIS)|(1<<Y_AXIS))  // OPTIONAL: Then move X,Y at the same time.
-  // #define HOMING_CYCLE_2                         // OPTIONAL: Uncomment and add axes mask to enable
-#endif // DEFAULTS_RAMPS_BOARD
 
-// NOTE: The following are two examples to setup homing for 2-axis machines.
-// #define HOMING_CYCLE_0 ((1<<X_AXIS)|(1<<Y_AXIS))  // NOT COMPATIBLE WITH COREXY: Homes both X-Y in one cycle. 
-
-// #define HOMING_CYCLE_0 (1<<X_AXIS)  // COREXY COMPATIBLE: First home X
-// #define HOMING_CYCLE_1 (1<<Y_AXIS)  // COREXY COMPATIBLE: Then home Y
+#define HOMING_CYCLE_0 (1<<X_AXIS)  // COREXY COMPATIBLE: First home X
+#define HOMING_CYCLE_1 (1<<Y_AXIS)  // COREXY COMPATIBLE: Then home Y
 
 // Number of homing cycles performed after when the machine initially jogs to limit switches.
 // This help in preventing overshoot and should improve repeatability. This value should be one or
@@ -305,7 +293,7 @@
 // frequencies below 10kHz, where the aliasing between axes of multi-axis motions can cause audible
 // noise and shake your machine. At even lower step frequencies, AMASS adapts and provides even better
 // step smoothing. See stepper.c for more details on the AMASS system works.
-#define ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING  // Default enabled. Comment to disable.
+//#define ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING  // Default enabled. Comment to disable.
 
 // Sets the maximum step rate allowed to be written as a Grbl setting. This option enables an error
 // check in the settings module to prevent settings values that will exceed this limitation. The maximum
