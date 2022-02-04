@@ -1,6 +1,6 @@
 This is a specialized version of GRBL for our photonics lab automation purposes. For arduino mega 2560.
 
--- How to upload: --
+## How to upload
 
 0. install arduino ide and ch430 driver
 
